@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Item</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+          href="/static/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="p-3 mb-2 bg-light text-dark page-holder bg-cover">
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{/items}">
+                <img src="/images/doc.png" th:href="@{/images/doc.png}" width="35" height="35" class="d-inline-block align-top" alt="">
+                <b>Create New Item</b>
+            </a>
+        </nav>
+        <form action="/items/add" method="post" th:object="${item}" th:action="@{/items/add}">
+
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                </div>
+                <input th:field="*{name}" type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default">
+
+            </div>
+
+
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+                </div>
+                <input th:field="*{description}" type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                </div>
+                <input th:field="*{price}" type="text" class="form-control" aria-label="Sizing example input"
+                       aria-describedby="inputGroup-sizing-default">
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>
