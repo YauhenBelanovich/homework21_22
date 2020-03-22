@@ -7,6 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ItemRepositoryImpl extends GenericDAOImpl<Long, Item> implements ItemRepository {
 
-//    public ItemRepositoryImpl() {super(entityManager);}
-
 }

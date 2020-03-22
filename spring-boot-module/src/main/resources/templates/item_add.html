@@ -34,7 +34,7 @@
             <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+                    <span class="input-group-text">Description</span>
                 </div>
                 <input th:field="*{description}" type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
@@ -43,14 +43,38 @@
             <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-default">Price</span>
+                    <span class="input-group-text">Price</span>
                 </div>
                 <input th:field="*{price}" type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-bordered table-striped">
+                        <thead class="table-info">
+                        <tr>
+                            <th scope="col">Select shop</th>
+                            <th scope="col">Location</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="shop, rowStat: ${shops}">
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input tclass="form-check-input" type="checkbox" th:field="*{addShopDTOS[__${rowStat.index}__].shopId}"  th:value="${shop.shopId}">
+                                    <label class="form-check-label" >
+                                        <a th:text="${shop.name}"/>
+                                    </label>
+                                </div>
+                            </td>
+                            <td th:text="${shop.location}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <button type="submit" class="btn btn-info">Submit</button>
         </form>
-    </div>
 </div>
 </body>
 

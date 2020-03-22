@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>documents</title>
+    <title>items</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
           href="/static/css/bootstrap.min.css">
@@ -30,18 +30,18 @@
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
-                    <tbody th:each="itemList: ${itemList}">
+                    <tbody th:each="itemFromDB: ${itemList}">
                     <tr>
-                        <td th:text="${itemList.id}"></td>
-                        <td th:text="${itemList.name}"></td>
-<!--                        <td th:text="${itemList.price}"></td>-->
+                        <td th:text="${itemFromDB.id}"></td>
+                        <td th:text="${itemFromDB.name}"></td>
+                        <td th:text="${itemFromDB.price}"></td>
                         <td>
-                            <form th:action="@{/items/{id}(id=${itemList.id})}" style="display:inline;">
+                            <form th:action="@{/items/{id}(id=${itemFromDB.id})}" style="display:inline;">
                                 <input type="submit" value="View details" class="btn btn-info">
                             </form>
                         </td>
                         <td>
-                            <form th:action="@{/items/{id}/delete(id=${itemList.id})}" style="display:inline;">
+                            <form th:action="@{/items/{id}/delete(id=${itemFromDB.id})}" style="display:inline;">
                                 <input type="submit" value="Delete" class="btn btn-info">
                             </form>
                         </td>
@@ -51,6 +51,7 @@
             </div>
         </div>
         <a th:href="@{/items/add}" class="btn btn-info btn-lg active" role="button" aria-pressed="true">New item</a>
+        <a th:href="@{/shops}" class="btn btn-info btn-lg active" role="button" aria-pressed="true">List of shops</a>
     </div>
 </div>
 <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>

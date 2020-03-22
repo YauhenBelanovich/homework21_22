@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -23,7 +22,7 @@ public class ItemDetails {
     @GenericGenerator(name = "generator",
             strategy = "foreign",
             parameters = @Parameter(name = "property", value = "item"))
-    @Column(name = "item_id", unique = true, nullable = false)
+    @Column(name = "item_id", unique = true)
     private Long itemId;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -49,13 +48,13 @@ public class ItemDetails {
         this.itemId = itemId;
     }
 
-/*    public Item getItem() {
+    public Item getItem() {
         return item;
     }
 
     public void setItem(Item item) {
         this.item = item;
-    }*/
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -72,7 +71,7 @@ public class ItemDetails {
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, /*item,*/ price);
+        return Objects.hash(itemId, price);
     }
 
 }

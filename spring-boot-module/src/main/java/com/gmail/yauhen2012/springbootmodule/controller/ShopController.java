@@ -25,7 +25,8 @@ public class ShopController {
     private final ShopService shopService;
 
     public ShopController(ShopService shopService) {
-        this.shopService = shopService;}
+        this.shopService = shopService;
+    }
 
     @GetMapping
     public String getShopList(Model model) {

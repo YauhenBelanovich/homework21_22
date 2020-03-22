@@ -2,7 +2,6 @@ package com.gmail.yauhen2012.service.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.transaction.Transactional;
 
 import com.gmail.yauhen2012.repository.ShopRepository;
@@ -32,11 +31,11 @@ public class ShopServiceImpl implements ShopService {
     @Override
     @Transactional
     public void add(AddShopDTO addShopDTO) {
-        Shop shop = convertItemDTOToDatabaseItem(addShopDTO);
+        Shop shop = convertShopDTOToDatabaseShop(addShopDTO);
         shopRepository.add(shop);
     }
 
-    private Shop convertItemDTOToDatabaseItem(AddShopDTO addShopDTO) {
+    private Shop convertShopDTOToDatabaseShop(AddShopDTO addShopDTO) {
         Shop shop = new Shop();
         shop.setName(addShopDTO.getName());
         shop.setLocation(addShopDTO.getLocation());

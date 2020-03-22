@@ -12,11 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class GenericDAOImpl<I, T> implements GenericDAO<I, T> {
 
-    protected Class<T> entityClass;
+    private Class<T> entityClass;
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @SuppressWarnings("unchecked")
     public GenericDAOImpl() {
         ParameterizedType genericSuperClass = (ParameterizedType) getClass()
                 .getGenericSuperclass();

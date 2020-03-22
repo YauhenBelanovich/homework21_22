@@ -3,10 +3,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Item Details</title>
+    <title>shops</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link th:href="@{/css/bootstrap.min.css}"
-          href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+          href="/static/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <nav class="navbar navbar-light bg-light">
             <a class="navbar-brand" th:href="@{/items}">
                 <img src="/images/doc.png" th:href="@{/images/doc.png}" width="35" height="35" class="d-inline-block align-top" alt="">
-                <b>Item Details</b>
+                <b>List Of Shops</b>
             </a>
         </nav>
         <div class="row">
@@ -23,37 +23,28 @@
                 <table class="table table-bordered table-striped">
                     <thead class="table-info">
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Shops</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Location</th>
                     </tr>
                     </thead>
-                    <tbody th:each="item: ${itemById}">
+                    <tbody th:each="shopList: ${shopList}">
                     <tr>
-                        <td th:text="${item.id}"></td>
-                        <td th:text="${item.name}"></td>
-                        <td th:text="${item.description}"></td>
-                        <td th:text="${item.price}"></td>
-                        <td th:text="${shopList}"></td>
-                        <td>
-                            <form th:action="@{/items/{id}/delete(id=${itemById.id})}" style="display:inline;">
-                                <input type="submit" value="Delete" class="btn btn-info">
-                            </form>
-                        </td>
+                        <td th:text="${shopList.shopId}"></td>
+                        <td th:text="${shopList.name}"></td>
+                        <td th:text="${shopList.location}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        <a th:href="@{/items}" class="btn btn-info btn-lg active" role="button" aria-pressed="true">Back to the list of items</a>
+        <a th:href="@{/shops/add}" class="btn btn-info btn-lg active" role="button" aria-pressed="true">New shop</a>
+        <a th:href="@{/items}" class="btn btn-info btn-lg active" role="button" aria-pressed="true">List of items</a>
     </div>
 </div>
-
 <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
 <script src="../static/js/popper.min.js" th:href="@{/js/popper.min.js}"></script>
 <script src="../static/js/jquery-3.4.1.slim.min.js" th:href="@{/js/jquery-3.4.1.slim.min.js}"></script>
 </body>
+
 </html>

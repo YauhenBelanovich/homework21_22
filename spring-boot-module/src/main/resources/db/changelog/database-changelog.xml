@@ -13,17 +13,6 @@
             <column name="description" type="varchar(100)"/>
         </createTable>
     </changeSet>
-<!--    <changeSet id="2" author="yauhen2012@gmail.com">-->
-<!--        <createTable tableName="item_details">-->
-<!--            <column name="item_id" type="BIGINT">-->
-<!--                <constraints primaryKey="true"-->
-<!--                             nullable="false"-->
-<!--                             foreignKeyName="item_id"-->
-<!--                             references="item(id)"/>-->
-<!--            </column>-->
-<!--            <column name="price" type="varchar(40)"/>-->
-<!--        </createTable>-->
-<!--    </changeSet>-->
     <changeSet id="2" author="yauhen2012@gmail.com">
         <createTable tableName="shop">
             <column name="shop_id" type="BIGINT" autoIncrement="true">
@@ -39,10 +28,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="item_id" type="BIGINT">
-                <constraints foreignKeyName="item_id" referencedColumnNames="item(item_id)" nullable="false"/>
+                <constraints foreignKeyName="item_id" referencedColumnNames="item(id)"/>
             </column>
             <column name="shop_id" type="BIGINT">
-                <constraints foreignKeyName="shop_id" referencedColumnNames="shop(shop_id)" nullable="false"/>
+                <constraints foreignKeyName="shop_id" referencedColumnNames="shop(shop_id)"/>
             </column>
         </createTable>
     </changeSet>

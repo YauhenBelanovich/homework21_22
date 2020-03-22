@@ -1,5 +1,7 @@
 package com.gmail.yauhen2012.repository.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,7 +22,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
+    @Column
     private Long id;
     @Column
     private String name;
@@ -25,10 +30,21 @@ public class Item {
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY,
-        mappedBy = "item",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true)
+            mappedBy = "item",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private ItemDetails itemDetails;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade =
+            {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "item_shop",
+            joinColumns = {
+                    @JoinColumn(name = "item_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "shop_id")
+            })
+    private List<Shop> shops = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -60,6 +76,14 @@ public class Item {
 
     public void setItemDetails(ItemDetails itemDetails) {
         this.itemDetails = itemDetails;
+    }
+
+    public List<Shop> getShops() {
+        return shops;
+    }
+
+    public void setShops(List<Shop> shops) {
+        this.shops = shops;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.gmail.yauhen2012.service.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class ItemDTO {
 
@@ -8,6 +9,15 @@ public class ItemDTO {
     private String name;
     private String description;
     private BigDecimal price;
+    private List<ShopDTO> shopDTOS;
+
+    public List<ShopDTO> getShopDTOS() {
+        return shopDTOS;
+    }
+
+    public void setShopDTOS(List<ShopDTO> shopDTOS) {
+        this.shopDTOS = shopDTOS;
+    }
 
     public Long getId() {
         return id;
