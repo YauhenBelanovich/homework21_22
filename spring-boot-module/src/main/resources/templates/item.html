@@ -37,7 +37,23 @@
                         <td th:text="${item.name}"></td>
                         <td th:text="${item.description}"></td>
                         <td th:text="${item.price}"></td>
-                        <td th:text="${shopList}"></td>
+                        <td>
+
+                            <table class="table table-sm">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Location</th>
+                                </tr>
+                                </thead>
+                                <tbody th:each="shop: ${item.shopDTOS}">
+                                <tr>
+                                    <td th:text="${shop.name}"></td>
+                                    <td th:text="${shop.location}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </td>
                         <td>
                             <form th:action="@{/items/{id}/delete(id=${itemById.id})}" style="display:inline;">
                                 <input type="submit" value="Delete" class="btn btn-info">

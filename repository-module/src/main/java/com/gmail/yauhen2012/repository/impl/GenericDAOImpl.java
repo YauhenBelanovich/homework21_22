@@ -12,10 +12,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class GenericDAOImpl<I, T> implements GenericDAO<I, T> {
 
-    private Class<T> entityClass;
+    protected Class<T> entityClass;
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     @SuppressWarnings("unchecked")
     public GenericDAOImpl() {
@@ -30,9 +30,24 @@ public abstract class GenericDAOImpl<I, T> implements GenericDAO<I, T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<T> findAll() {
         String query = "from " + entityClass.getName() + " c";
         Query q = entityManager.createQuery(query);
+        return q.getResultList();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<T> getObjectsByPage(
+            int startPosition,
+            int itemsByPage
+    ) {
+        String query = "from " + entityClass.getName() + " i";
+        Query q = entityManager.createQuery(query);
+        q.setFirstResult(startPosition);
+        q.setMaxResults(itemsByPage);
+
         return q.getResultList();
     }
 

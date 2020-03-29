@@ -1,5 +1,6 @@
 package com.gmail.yauhen2012.repository.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,13 +31,13 @@ public class ItemDetails {
     private Item item;
 
     @Column
-    private String price;
+    private BigDecimal price;
 
-    public String getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

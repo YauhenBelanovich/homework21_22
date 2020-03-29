@@ -27,9 +27,7 @@
                 </div>
                 <input th:field="*{name}" type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
-
             </div>
-
 
             <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
             <div class="input-group mb-3">
@@ -61,8 +59,9 @@
                         <tr>
                             <td>
                                 <div class="form-check">
-                                    <input tclass="form-check-input" type="checkbox" th:field="*{addShopDTOS[__${rowStat.index}__].shopId}"  th:value="${shop.shopId}">
-                                    <label class="form-check-label" >
+                                    <input tclass="form-check-input" type="checkbox" th:field="*{addShopDTOS[__${rowStat.index}__].shopId}"
+                                           th:value="${shop.shopId}">
+                                    <label class="form-check-label">
                                         <a th:text="${shop.name}"/>
                                     </label>
                                 </div>
@@ -75,7 +74,11 @@
             </div>
             <button type="submit" class="btn btn-info">Submit</button>
         </form>
-</div>
+    </div>
+
+    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"></script>
+    <script src="../static/js/popper.min.js" th:href="@{/js/popper.min.js}"></script>
+    <script src="../static/js/jquery-3.4.1.slim.min.js" th:href="@{/js/jquery-3.4.1.slim.min.js}"></script>
 </body>
 
 </html>
