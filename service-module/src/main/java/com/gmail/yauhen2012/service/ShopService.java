@@ -11,4 +11,8 @@ public interface ShopService {
 
     void add(AddShopDTO addShopDTO);
 
+    List<ShopDTO> findByLocation(String location);
+
+    List<ShopDTO> getShopsByPage(String page);
+
 }

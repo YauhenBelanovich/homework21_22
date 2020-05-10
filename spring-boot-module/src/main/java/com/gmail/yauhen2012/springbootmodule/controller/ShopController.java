@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/shops")
@@ -29,8 +30,8 @@ public class ShopController {
     }
 
     @GetMapping
-    public String getShopList(Model model) {
-        List<ShopDTO> shopDTOList = shopService.findAll();
+    public String getShopList(@RequestParam(value = "page", defaultValue = "1") String page, Model model) {
+        List<ShopDTO> shopDTOList = shopService.getShopsByPage(page);
         model.addAttribute("shopList", shopDTOList);
         logger.debug("Get shopList method");
         return "shops";
@@ -53,6 +54,14 @@ public class ShopController {
             logger.debug("Post addShop method");
             return "redirect:/shops";
         }
+    }
+
+    @GetMapping("/search")
+    public String searchShop(@RequestParam(value = "location") String location, Model model) {
+        List<ShopDTO> shopsDTOByLocation = shopService.findByLocation(location);
+        model.addAttribute("shopsDTOByLocation", shopsDTOByLocation);
+        logger.debug("Get shopsByLocation method");
+        return "shops";
     }
 
 }

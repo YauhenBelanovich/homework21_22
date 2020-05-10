@@ -12,4 +12,6 @@ public interface GenericDAO<I, T> {
 
     T findById(I id);
 
+    List<T> getObjectsByPage(int startPosition, int itemsByPage);
+
 }

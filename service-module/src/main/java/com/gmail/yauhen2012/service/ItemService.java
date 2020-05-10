@@ -1,5 +1,6 @@
 package com.gmail.yauhen2012.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.gmail.yauhen2012.service.model.AddItemDTO;
@@ -11,8 +12,12 @@ public interface ItemService {
 
     ItemDTO findItemById(Long id);
 
-    List<ItemDTO> findAll();
-
     int deleteItemById(Long id);
+
+    List<ItemDTO> getItemsByPage(String page);
+
+    List<ItemDTO> findItemByName(String name);
+
+    List<ItemDTO> findItemsWithPriceRange(BigDecimal startPrice, BigDecimal endPrice);
 
 }

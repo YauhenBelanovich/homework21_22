@@ -41,7 +41,7 @@
             <column name="item_id" type="BIGINT">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="price" type="varchar(40)"/>
+            <column name="price" type="DECIMAL(12,2)"/>
         </createTable>
     </changeSet>
     <changeSet id="5" author="yauhen2012@gmail.com">
@@ -54,4 +54,16 @@
                                  referencedTableName="item"
                                  validate="true"/>
     </changeSet>
+
+    <changeSet id="6" author="yauhen2012@gmail.com">
+        <createTable tableName="user">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(16)"/>
+            <column name="password" type="varchar(70)"/>
+            <column name="role" type="varchar(16)"/>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

@@ -7,8 +7,10 @@ import javax.transaction.Transactional;
 import com.gmail.yauhen2012.repository.ShopRepository;
 import com.gmail.yauhen2012.repository.model.Shop;
 import com.gmail.yauhen2012.service.ShopService;
+import com.gmail.yauhen2012.service.constant.PaginationConstant;
 import com.gmail.yauhen2012.service.model.AddShopDTO;
 import com.gmail.yauhen2012.service.model.ShopDTO;
+import com.gmail.yauhen2012.service.util.PaginationUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,10 +24,23 @@ public class ShopServiceImpl implements ShopService {
     @Transactional
     public List<ShopDTO> findAll() {
         List<Shop> shopList = shopRepository.findAll();
-        List<ShopDTO> shopDTOList = shopList.stream()
+        return shopList.stream()
                 .map(this::convertDatabaseObjectToDTO)
                 .collect(Collectors.toList());
-        return shopDTOList;
+    }
+
+    @Override
+    @Transactional
+    public List<ShopDTO> getShopsByPage(String page) {
+
+        int pageInt = Integer.parseInt(page);
+        List<Shop> shopList = shopRepository.getObjectsByPage(
+                PaginationUtil.findStartPosition(pageInt),
+                PaginationConstant.ITEMS_BY_PAGE
+        );
+        return shopList.stream()
+                .map(this::convertDatabaseObjectToDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -33,6 +48,15 @@ public class ShopServiceImpl implements ShopService {
     public void add(AddShopDTO addShopDTO) {
         Shop shop = convertShopDTOToDatabaseShop(addShopDTO);
         shopRepository.add(shop);
+    }
+
+    @Override
+    @Transactional
+    public List<ShopDTO> findByLocation(String location) {
+        List<Shop> shopFromDB = shopRepository.findByLocation(location);
+        return shopFromDB.stream()
+                .map(this::convertDatabaseObjectToDTO)
+                .collect(Collectors.toList());
     }
 
     private Shop convertShopDTOToDatabaseShop(AddShopDTO addShopDTO) {
